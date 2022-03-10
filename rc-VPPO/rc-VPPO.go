@@ -112,6 +112,7 @@ userNameLoop:
 	ccpPath := filepath.Join(
 		"..",
 		"..",
+		"fabric-samples-2.3",
 		"test-network",
 		"organizations",
 		"peerOrganizations",
@@ -366,6 +367,7 @@ func populateWallet(wallet *gateway.Wallet, userName string) error {
 	credPath := filepath.Join(
 		"..",
 		"..",
+		"fabric-samples-2.3",
 		"test-network",
 		"organizations",
 		"peerOrganizations",
