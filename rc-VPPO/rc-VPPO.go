@@ -197,20 +197,7 @@ contractNameLoop:
 				fmt.Print("Do you want to clean up the wallet? [y/n]: ")
 				cleanUpConfirm := catchOneInput()
 				if isYes(cleanUpConfirm) {
-					log.Println("-> Cleaning up wallet...")
-					if _, err := os.Stat("wallet"); err == nil {
-						e := os.RemoveAll("wallet")
-						if e != nil {
-							log.Fatal(e)
-						}
-					}
-					if _, err := os.Stat("keystore"); err == nil {
-						e := os.RemoveAll("keystore")
-						if e != nil {
-							log.Fatal(e)
-						}
-					}
-					log.Println("-> Wallet cleaned up successfully")
+					cleanUp()
 				}
 				exitApp()
 			} else {
@@ -457,6 +444,23 @@ func catchOneInput() string {
 		exitApp()
 	}
 	return s
+}
+
+func cleanUp() {
+	log.Println("-> Cleaning up wallet...")
+	if _, err := os.Stat("wallet"); err == nil {
+		e := os.RemoveAll("wallet")
+		if e != nil {
+			log.Fatal(e)
+		}
+	}
+	if _, err := os.Stat("keystore"); err == nil {
+		e := os.RemoveAll("keystore")
+		if e != nil {
+			log.Fatal(e)
+		}
+	}
+	log.Println("-> Wallet cleaned up successfully")
 }
 
 // safely exit application
