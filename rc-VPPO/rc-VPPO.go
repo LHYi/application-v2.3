@@ -122,7 +122,7 @@ userNameLoop:
 	log.Println("============ connecting to gateway ============")
 	gw, err := gateway.Connect(
 		gateway.WithConfig(config.FromFile(filepath.Clean(ccpPath))),
-		gateway.WithIdentity(wallet, "appUser"),
+		gateway.WithIdentity(wallet, userName),
 	)
 	if err != nil {
 		log.Fatalf("Failed to connect to gateway: %v", err)
@@ -152,7 +152,7 @@ networkNameLoop:
 	}
 	log.Printf("-> Your network name is %s.", networkName)
 
-	network, err := gw.GetNetwork("mychannel")
+	network, err := gw.GetNetwork(networkName)
 	if err != nil {
 		log.Fatalf("Failed to get network: %v", err)
 	}
@@ -179,7 +179,7 @@ contractNameLoop:
 		}
 	}
 	log.Printf("-> Your contract name is %s.", contractName)
-	contract := network.GetContract("basic")
+	contract := network.GetContract(contractName)
 	log.Println("============ successfully got contract", contractName, "============")
 	for {
 		fmt.Println("-> Please enter the name of the smart contract function you want to invoke, enter help to print the functions available")
